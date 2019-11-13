@@ -63,12 +63,68 @@ var selectUnit= {
       </table>\
     </fieldset>\
   </div>'
+
+}
+
+var profilUnit= {
+  data : function() {
+    return {
+      keyUnit: null,
+      profil: null
+    }
+  },
+  methods : {
+    changeUnitProfil(id) {
+      this.keyUnit = id
+      var url= "http://127.0.0.1:3000/api/profile/" + this.keyUnit
+
+      axios.get(url).then(response =>{
+        this.profil = response.data.reponse[0]
+      })
+    }
+  },
+  template : '\
+  <div>\
+    <fieldset class="profile">\
+      <legend>Profile</legend>\
+      <table v-if="profil !== null">\
+        <thead>\
+          <tr>\
+            <th>M</th>\
+            <th>CC</th>\
+            <th>CT</th>\
+            <th>F</th>\
+            <th>E</th>\
+            <th>PV</th>\
+            <th>I</th>\
+            <th>A</th>\
+            <th>Cd</th>\
+          </tr>\
+        </thead>\
+        <tbody>\
+          <tr>\
+            <td>{{profil.M}}</td>\
+            <td>+ {{profil.CC}}</td>\
+            <td>+ {{profil.CT}}</td>\
+            <td>{{profil.F}}</td>\
+            <td>{{profil.E}}</td>\
+            <td>{{profil.PV}}</td>\
+            <td>{{profil.I}}</td>\
+            <td>{{profil.A}}</td>\
+            <td>{{profil.Cd}}</td>\
+          </tr>\
+        </tbody>\
+      </table>\
+    </fieldset>\
+    <button type="button" @click="changeUnitProfil(1)">change id </button>\
+  </div>'
 }
 
 var app = new Vue({
     el: '#app',
     components: {
-      'select-unit' : selectUnit
+      'select-unit' : selectUnit,
+      'profil-unit' : profilUnit
     },
     data: {
         info: null,
