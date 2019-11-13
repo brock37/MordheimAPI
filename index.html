@@ -1,37 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+
     <meta charset="utf-8">
+    <link rel="stylesheet" href="master.css">
     <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <h1>Mordheim Bands</h1>
-    <fieldset>
-      <legend>Unité</legend>
-      <table>
-        <tbody>
-          <tr>
-            <th>Faction </th>
-            <td>
-              <select class="" name="id_faction" title="Sélectionnez une faction">
-                <option value="">Nains</option>
-                <option value="">Orcs</option>
-                <option value="">Skavens</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <th>Rang </th>
-            <td>
-              <select class="" name="id_rang" title="Sélectionnez un rang pour l'unité">
-                <option value="">Héros</option>
-                <option value="">Homme de main</option>
-              </select>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </fieldset>
-    <a href="http://127.0.0.1:3000/api/profile">test</a>
+    
+    <div id="app">
+            <select-unit></select-unit>
+<!--            {{info}}
+<br>
+            {{info.data.reponse}} !-->
+        </div>
+
+    <script src="app.js"></script>
   </body>
 </html>
