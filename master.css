@@ -1,0 +1,11 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+
+fieldset{
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  min-width: 50%;
+}
