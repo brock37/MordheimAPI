@@ -43,6 +43,15 @@ app.get('/api/profile/:id' , (req, res)=> {
   });
 });
 
+//Show Faction & rang Profile
+app.get('/api/profile/:race/:rang' , (req, res)=> {
+  let sql = "SELECT id, Nom FROM ref_profil WHERE id_race= '" + req.params.race +"' AND id_rang = '"+ req.params.rang + "'";
+  let query = connection.query(sql, function (err, results) {
+    if(err) throw err;
+    res.send(JSON.stringify({"status": 200, "error": null, "reponse": results}))
+  });
+});
+
 //Add new Profile
 app.post('/api/profile' , (req, res)=> {
   let data = {
