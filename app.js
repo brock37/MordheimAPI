@@ -3,6 +3,7 @@ var selectUnit= {
     return{
       keyFaction: "",
       keyRang: "",
+      keyUnit: "",
       units:[],
       apiAnswer: null
     }
@@ -54,7 +55,7 @@ var selectUnit= {
           <tr>\
             <th>Unité </th>\
             <td>\
-              <select name="id_unite" title="Sélectionnez un rang pour l\'unité">\
+              <select v-model="keyUnit" name="id_unite" title="Sélectionnez un rang pour l\'unité">\
                 <option v-for="unit in units" :value="unit.id">{{unit.Nom}}</option>\
               </select>\
             </td>\
