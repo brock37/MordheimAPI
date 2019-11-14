@@ -138,8 +138,8 @@ var profilUnit= {
         <tbody>\
           <tr>\
             <td>{{profil.M}}</td>\
-            <td>+ {{profil.CC}}</td>\
-            <td>+ {{profil.CT}}</td>\
+            <td>{{profil.CC}}</td>\
+            <td>{{profil.CT}}</td>\
             <td>{{profil.F}}</td>\
             <td>{{profil.E}}</td>\
             <td>{{profil.PV}}</td>\
