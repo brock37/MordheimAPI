@@ -12,8 +12,8 @@
     <h1>Mordheim Bands</h1>
 
     <div id="app">
-      <select-unit></select-unit>
-      <profil-unit></profil-unit>
+      <select-unit v-bind:keyunit.sync="keyunit"></select-unit>
+      <profil-unit v-bind:key-unit="keyunit"></profil-unit>
 <!--            {{info}}
 <br>
             {{info.data.reponse}} !-->

@@ -12,17 +12,26 @@ var selectUnit= {
       if (this.keyFaction !== "" && this.keyRang !== "")
       {
         console.log("changement d'unités");
+        this.keyUnit = ""
         var vm= this
-        var url= "http://127.0.0.1:3000/api/profile/" + this.keyFaction + "/" + this.keyRang
+        var url= "http://127.0.0.1:3000/api/profile/"
+                + this.keyFaction + "/" + this.keyRang
 
         axios.get(url).then(response =>{
           this.units = response.data.reponse
         })
+
       }
     }
   },
   mounted () {
 
+  },
+  watch : {
+    keyUnit: function (){
+      //Envoie un signal ainsi que la nouvelle valeur de keyUnit au parent
+      this.$emit('update:keyunit', this.keyUnit)
+    }
   },
   template: '\
   <div>\
@@ -66,9 +75,9 @@ var selectUnit= {
 }
 
 var profilUnit= {
+  props: ['keyUnit'],
   data : function() {
     return {
-      keyUnit: null,
       profil: null
     }
   },
@@ -81,6 +90,24 @@ var profilUnit= {
         this.profil = response.data.reponse[0]
       })
     }
+  },
+  watch : {
+    /*
+    Des que la valeur de keyUnit change on regarde:
+    Si un profil est selectionne on l'enregistre
+    Sinon on remet a zero pour que la table disparaisse
+    */
+    keyUnit: function(){
+      if(this.keyUnit !== "") {
+        this.changeUnitProfil(this.keyUnit)
+      }
+      else {
+        this.profil = null
+      }
+
+    }
+  },
+  mounted () {
   },
   template : '\
   <div>\
