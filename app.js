@@ -4,10 +4,14 @@ var selectUnit= {
       keyFaction: "",
       keyRang: "",
       keyUnit: "",
-      units:[],
+      units:[] //Contient les unites disponible
     }
   },
   methods :{
+    /*
+    Récupere la liste des unité disponible depuis l'API
+    en fonction de la faction et du rang choisis
+    */
     changeUnitSelector(event) {
       if (this.keyFaction !== "" && this.keyRang !== "")
       {
@@ -78,13 +82,17 @@ var profilUnit= {
   props: ['keyUnit'],
   data : function() {
     return {
-      profil: null
+      profil: null  //Contient les infos récuperer de la BDD
     }
   },
   methods : {
+    /*
+    Fais une requete a l'API pour avoir le profil de l'unité selectionner
+    */
     changeUnitProfil(id) {
       this.keyUnit = id
       var url= "http://127.0.0.1:3000/api/profile/" + this.keyUnit
+      console.log(url);
 
       axios.get(url).then(response =>{
         this.profil = response.data.reponse[0]
@@ -152,4 +160,11 @@ var app = new Vue({
       'profil-unit' : profilUnit
     },
     data: {
+      /*
+      Fais le liens entre les composants enfants
+      en récuprerant la valeur depuis select-unit
+      et en la renvoyant dans profil-unit
+      */
+        keyunit: null
+    }
 });
