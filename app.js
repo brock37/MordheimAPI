@@ -5,7 +5,6 @@ var selectUnit= {
       keyRang: "",
       keyUnit: "",
       units:[],
-      apiAnswer: null
     }
   },
   methods :{
@@ -23,7 +22,6 @@ var selectUnit= {
     }
   },
   mounted () {
-    console.log("Mounted SelectUnit")
 
   },
   template: '\
@@ -117,7 +115,6 @@ var profilUnit= {
         </tbody>\
       </table>\
     </fieldset>\
-    <button type="button" @click="changeUnitProfil(1)">change id </button>\
   </div>'
 }
 
@@ -128,11 +125,4 @@ var app = new Vue({
       'profil-unit' : profilUnit
     },
     data: {
-        info: null,
-        unit: []
-    }/*,
-    mounted () {
-      axios.get("http://127.0.0.1:3000/api/profile/1/1").then(response => (this.info = response))
-
-    }*/
 });
