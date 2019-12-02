@@ -64,6 +64,15 @@ app.get('/api/profile/:race/:rang' , (req, res)=> {
   });
 });
 
+//Show all aviable faction
+app.get('/api/faction' , (req, res)=> {
+  let sql = "SELECT * from race";
+  let query = connection.query(sql, function (err, results) {
+    if(err) throw err;
+    res.send(JSON.stringify({"status": 200, "error": null, "reponse": results}))
+  });
+});
+
 //Add new Profile
 app.post('/api/profile' , (req, res)=> {
   let data = {
