@@ -153,6 +153,9 @@ var profilUnit= {
   </div>'
 }
 
+import selectUnit from './components/SelectUnit.vue'
+import profilUnit from './components/ProfilUnit.vue'
+
 var app = new Vue({
     el: '#app',
     components: {
