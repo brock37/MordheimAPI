@@ -115,21 +115,44 @@ export default {
 fieldset{
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
-  min-width: 50%;
   margin-bottom: 25px;
-}
-.profile table, .profile td{
-  border: 1px solid #333;
-}
-
-.profile td,th{
-  width: 50px;
+  width: 50%;
   text-align: center;
 }
 
 .profile thead{
   background-color: #333;
   color: #fff;
+}
+
+.stats table, .stats td{
+  border: 1px solid #333;
+}
+
+.stats td , .stats th{
+  min-width: 20px;
+  width : 80px;
+}
+
+.rulesTable table, .rulesTable td {
+  border: none;
+}
+
+.rulesTable tr:nth-child(odd) td{
+  background: white;
+}
+
+.rulesTable tr:nth-child(even) td{
+  background: grey;
+  color: white;
+}
+
+.price{
+  text-align: left;
+}
+
+.smallint{
+  width: 30px;
+  text-align: center;
 }
 </style>
