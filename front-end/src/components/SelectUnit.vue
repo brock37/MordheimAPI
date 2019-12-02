@@ -7,18 +7,18 @@
           <tr>
             <th>Faction </th>
             <td>
-              <select @change="changeUnitSelector($event)" v-model="keyFaction" class="" name="id_faction" title="Sélectionnez une faction">
-                <option value="1">Nains</option>
-                <option value="2">Orques</option>
-                <option value="3">Hommes-bêtes</option>
-                <option value="4">Skavens</option>
+              <select @change="changeUnitSelector($event)" v-model="keyFaction"
+              class="" name="id_faction" title="Sélectionnez une faction">
+                <option v-for="faction in factions" :value="faction.id"
+                v-bind:key="faction.id">{{faction.nom_race}}</option>
                 </select>
             </td>
           </tr>
           <tr>
             <th>Rang </th>
             <td>
-              <select @change="changeUnitSelector($event)" v-model="keyRang" class="" name="id_rang" title="Sélectionnez un rang pour l\'unité">
+              <select @change="changeUnitSelector($event)" v-model="keyRang"
+              class="" name="id_rang" title="Sélectionnez un rang pour l\'unité">
                 <option value="0">Héros</option>
                 <option value="1">Homme de main</option>
                 </select>
@@ -46,7 +46,8 @@ export default {
       keyFaction: "",
       keyRang: "",
       keyUnit: "",
-      units:[] //Contient les unites disponible
+      units:[] ,//Contient les unites disponible
+      factions: []
     }
   },
   methods :{
@@ -75,6 +76,13 @@ export default {
       //Envoie un signal ainsi que la nouvelle valeur de keyUnit au parent
       this.$emit('update:keyunit', this.keyUnit)
     }
+  },
+  created :function(){
+    let url= "http://127.0.0.1:3000/api/faction"
+
+    axios.get(url).then(response =>{
+      this.factions = response.data.reponse
+    })
   }
 }
 </script>
