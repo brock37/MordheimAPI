@@ -2,34 +2,56 @@
   <div>
     <fieldset class="profile">
       <legend>Profile</legend>
-      <table v-if="profil !== null">
-        <thead>
-          <tr>
-            <th>M</th>
-            <th>CC</th>
-            <th>CT</th>
-            <th>F</th>
-            <th>E</th>
-            <th>PV</th>
-            <th>I</th>
-            <th>A</th>
-            <th>Cd</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{profil.M}}</td>
-            <td>{{profil.CC}}</td>
-            <td>{{profil.CT}}</td>
-            <td>{{profil.F}}</td>
-            <td>{{profil.E}}</td>
-            <td>{{profil.PV}}</td>
-            <td>{{profil.I}}</td>
-            <td>{{profil.A}}</td>
-            <td>{{profil.Cd}}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="completeProfil" v-if="profil !== null">
+        <table class="stats">
+          <thead>
+            <tr>
+              <th>M</th>
+              <th>CC</th>
+              <th>CT</th>
+              <th>F</th>
+              <th>E</th>
+              <th>PV</th>
+              <th>I</th>
+              <th>A</th>
+              <th>Cd</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{profil.M}}</td>
+              <td>{{profil.CC}}</td>
+              <td>{{profil.CT}}</td>
+              <td>{{profil.F}}</td>
+              <td>{{profil.E}}</td>
+              <td>{{profil.PV}}</td>
+              <td>{{profil.I}}</td>
+              <td>{{profil.A}}</td>
+              <td>{{profil.Cd}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <div class="price">
+          Prix : <input type="text" name="price" :value="profil.Prix" class="smallint"> Courrones
+        </div>
+        <br>
+        <table class="rulesTable">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Desctiption</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="rule in rules" v-bind:key="rule.id">
+              <td>{{rule.nom}}</td>
+              <td>{{rule.resume}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
     </fieldset>
   </div>
 </template>
@@ -41,7 +63,8 @@ export default {
   props: ['keyUnit'],
   data : function() {
     return {
-      profil: null  //Contient les infos récuperer de la BDD
+      profil: null,  //Contient les infos récuperer de la BDD
+      rules : null
     }
   },
   methods : {
@@ -55,7 +78,18 @@ export default {
 
       axios.get(url).then(response =>{
         this.profil = response.data.reponse[0]
+
+        var urlRules= "http://127.0.0.1:3000/api/regles/" + this.keyUnit + "/" + this.profil.id_race
+        axios.get(urlRules).then(response =>{
+          this.rules = response.data.reponse
+        })
+
       })
+
+
+
+
+
     }
   },
   watch : {
