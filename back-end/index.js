@@ -73,6 +73,15 @@ app.get('/api/faction' , (req, res)=> {
   });
 });
 
+//Show special rules for one profil
+app.get('/api/regles/:id/:race' , (req, res)=> {
+  let sql = "SELECT * from regles_speciales WHERE id_personnage='" + req.params.id + "' OR id_race= '" + req.params.race + "'";
+  let query = connection.query(sql, function (err, results) {
+    if(err) throw err;
+    res.send(JSON.stringify({"status": 200, "error": null, "reponse": results}))
+  });
+});
+
 //Add new Profile
 app.post('/api/profile' , (req, res)=> {
   let data = {
