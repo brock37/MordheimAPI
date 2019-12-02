@@ -13,7 +13,7 @@
 import SelectUnit from '@/components/SelectUnit.vue'
 import ProfilUnit from '@/components/ProfilUnit.vue'
 export default {
-  name: 'Edit Profil',
+  name: 'EditProfil',
   components: {
     SelectUnit,
     ProfilUnit
