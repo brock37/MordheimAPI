@@ -1,7 +1,5 @@
 <template lang="html">
   <div class="main">
-    <h1>Mordheim Bands</h1>
-
     <SelectUnit v-bind:keyunit.sync="keyunit"/>
     <ProfilUnit v-bind:key-unit="keyunit"/>
   </div>
