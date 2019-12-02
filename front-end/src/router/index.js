@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Test from '../views/test.vue'
+import EditProfil from '../views/EditProfil.vue'
 
 Vue.use(VueRouter)
 
@@ -20,9 +20,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/test',
-    name: 'test',
-    component: Test
+    path: '/editprofil',
+    name: 'editprofil',
+    component: EditProfil
   }
 ]
 
