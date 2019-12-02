@@ -118,20 +118,30 @@ fieldset{
   margin-bottom: 25px;
   width: 50%;
   text-align: center;
+
 }
 
-.profile thead{
-  background-color: #333;
-  color: #fff;
+table{
+  border-collapse: collapse;
+  width: 95%;
+  margin: auto;
+}
+th,td{
+  padding: 5px;
 }
 
-.stats table, .stats td{
-  border: 1px solid #333;
+.stats thead{
+  border-bottom: 1px solid;
 }
 
 .stats td , .stats th{
   min-width: 20px;
-  width : 80px;
+  width: 10%;
+}
+
+.rulesTable thead{
+  background-color: #333;
+  color: #fff;
 }
 
 .rulesTable table, .rulesTable td {
