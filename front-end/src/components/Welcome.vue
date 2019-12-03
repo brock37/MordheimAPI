@@ -19,4 +19,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.welcome{
+  width: 50%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
 </style>
