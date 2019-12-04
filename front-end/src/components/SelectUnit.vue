@@ -28,6 +28,8 @@
               <select v-model="keyUnit" name="id_unite" title="Sélectionnez un rang pour l\'unité">
                 <option v-for="unit in units" :value="unit.id" v-bind:key="unit.id">{{unit.Nom}}</option>
               </select>
+              <button type="button" name="AddUnit" :disabled="disabledAddUnit" @click="OpenPopUpNewProfil()">+</button>
+              <NewUnit v-if="showCreatePopup" v-bind:profil="newProfil" @closePopUp="closePopUpNewProfil"/>
             </td>
           </tr>
         </tbody>
