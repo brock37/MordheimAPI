@@ -64,7 +64,8 @@ export default {
   data : function() {
     return {
       profil: null,  //Contient les infos récuperer de la BDD
-      rules : null
+      rules : null,
+      editMode: false
     }
   },
   methods : {
