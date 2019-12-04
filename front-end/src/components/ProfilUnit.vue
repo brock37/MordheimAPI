@@ -23,21 +23,21 @@
           </thead>
           <tbody>
             <tr>
-              <td>{{profil.M}}</td>
-              <td>{{profil.CC}}</td>
-              <td>{{profil.CT}}</td>
-              <td>{{profil.F}}</td>
-              <td>{{profil.E}}</td>
-              <td>{{profil.PV}}</td>
-              <td>{{profil.I}}</td>
-              <td>{{profil.A}}</td>
-              <td>{{profil.Cd}}</td>
+              <td><input type="text" name="Movement" v-model="profil.M" class="smallint" v-bind:class="classNoEdit" :readonly="!editMode"/></td>
+              <td><input type="text" name="Fight capacity" v-model="profil.CC" class="smallint" v-bind:class="classNoEdit" :readonly="!editMode"/></td>
+              <td><input type="text" name="Shooting capacity" v-model="profil.CT" class="smallint" v-bind:class="classNoEdit" :readonly="!editMode"/></td>
+              <td><input type="text" name="Force" v-model="profil.F" class="smallint" v-bind:class="classNoEdit" :readonly="!editMode"/></td>
+              <td><input type="text" name="Endurance" v-model="profil.E" class="smallint" v-bind:class="classNoEdit" :readonly="!editMode"/></td>
+              <td><input type="text" name="Life point" v-model="profil.PV" class="smallint" v-bind:class="classNoEdit" :readonly="!editMode"/></td>
+              <td><input type="text" name="Intelligence" v-model="profil.I" class="smallint" v-bind:class="classNoEdit" :readonly="!editMode"/></td>
+              <td><input type="text" name="Attack" v-model="profil.A" class="smallint" v-bind:class="classNoEdit" :readonly="!editMode"/></td>
+              <td><input type="text" name="Command" v-model="profil.Cd" class="smallint" v-bind:class="classNoEdit" :readonly="!editMode"/></td>
             </tr>
           </tbody>
         </table>
         <br>
         <div class="price">
-          Prix : <input type="text" name="price" :value="profil.Prix" class="smallint"> Courrones
+          Prix : <input type="text" name="price" :value="profil.Prix" class="smallint" v-bind:class="classNoEdit" :readonly="!editMode"> Courrones
         </div>
         <br>
         <table class="rulesTable">
