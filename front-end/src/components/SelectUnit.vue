@@ -76,6 +76,21 @@ export default {
         })
 
       }
+    },
+    OpenPopUpNewProfil() {
+      //Pour creer le nouveau profil on recupere la clef a lui attribue
+      this.showCreatePopup= true
+
+      this.newProfil.faction= this.keyFaction
+      this.newProfil.rang= this.keyRang
+
+    },
+    closePopUpNewProfil(id , accepted) {
+      this.showCreatePopup= false
+      if(accepted){
+        this.updateUnitSelector()
+        this.keyUnit= id
+      }
     }
   },
   watch : {
