@@ -1,7 +1,11 @@
 <template lang="html">
   <div>
     <fieldset class="profile">
-      <legend>Profile</legend>
+      <legend>Profile
+         <button type="button" name="EditMode" class="EditButton" v-if="profil !== null && editMode == false" @click.prevent="editMode = true">Edit</button>
+         <button type="button" name="AcceptEdit" v-if="editMode" @click.prevent="validEdit">V</button>
+         <button type="button" name="CancelEdit" v-if="editMode" @click.prevent="cancelEdit">X</button>
+       </legend>
       <div class="completeProfil" v-if="profil !== null">
         <table class="stats">
           <thead>
