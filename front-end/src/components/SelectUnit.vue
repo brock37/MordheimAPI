@@ -60,10 +60,10 @@ export default {
     Récupere la liste des unité disponible depuis l'API
     en fonction de la faction et du rang choisis
     */
-    changeUnitSelector() {
+    updateUnitSelector() {
       if (this.keyFaction !== "" && this.keyRang !== "")
-      {
-        //console.log("changement d'unités");
+      {//Si une faction et un rang ont ete choisis vas chercher les profil disponible
+        //ainsi que les regles associes au profil
         this.keyUnit = ""
 
         var url= "http://127.0.0.1:3000/api/profile/"
@@ -95,9 +95,16 @@ export default {
     keyUnit: function (){
       //Envoie un signal ainsi que la nouvelle valeur de keyUnit au parent
       this.$emit('update:keyunit', this.keyUnit)
+    },
+    keyRang: function() {
+      this.updateUnitSelector()
+    },
+    keyFaction: function() {
+      this.updateUnitSelector()
     }
   },
   created :function(){
+    //A la creation du composant on vas chercher les factions disponible dans la bbd
     let url= "http://127.0.0.1:3000/api/faction"
 
     axios.get(url).then(response =>{
