@@ -65,6 +65,7 @@ export default {
       {//Si une faction et un rang ont ete choisis vas chercher les profil disponible
         //ainsi que les regles associes au profil
         this.keyUnit = ""
+        this.disabledAddUnit= false
 
         var url= "http://127.0.0.1:3000/api/profile/"
                 + this.keyFaction + "/" + this.keyRang
