@@ -7,8 +7,7 @@
           <tr>
             <th>Faction </th>
             <td>
-              <select @change="changeUnitSelector($event)" v-model="keyFaction"
-              class="" name="id_faction" title="Sélectionnez une faction">
+              <select v-model="keyFaction" class="" name="id_faction" title="Sélectionnez une faction">
                 <option v-for="faction in factions" :value="faction.id"
                 v-bind:key="faction.id">{{faction.nom_race}}</option>
                 </select>
@@ -17,8 +16,7 @@
           <tr>
             <th>Rang </th>
             <td>
-              <select @change="changeUnitSelector($event)" v-model="keyRang"
-              class="" name="id_rang" title="Sélectionnez un rang pour l\'unité">
+              <select v-model="keyRang" class="" name="id_rang" title="Sélectionnez un rang pour l\'unité">
                 <option value="0">Héros</option>
                 <option value="1">Homme de main</option>
                 </select>
