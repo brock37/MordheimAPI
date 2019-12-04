@@ -55,7 +55,6 @@
           </tbody>
         </table>
       </div>
-
     </fieldset>
   </div>
 </template>
@@ -134,6 +133,13 @@ export default {
       }
 
     }
+  },
+  computed :{
+    classNoEdit: function(){
+      return{
+        noEdit: !this.editMode
+      }
+    }
   }
 }
 </script>
@@ -191,5 +197,9 @@ th,td{
 .smallint{
   width: 30px;
   text-align: center;
+}
+
+.noEdit{
+    border: none;
 }
 </style>
