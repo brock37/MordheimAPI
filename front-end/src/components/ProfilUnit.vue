@@ -72,10 +72,8 @@ export default {
     /*
     Fais une requete a l'API pour avoir le profil de l'unité selectionner
     */
-    changeUnitProfil(id) {
-      this.keyUnit = id
+    updateUnitProfil() {
       var url= "http://127.0.0.1:3000/api/profile/" + this.keyUnit
-      //console.log(url);
 
       axios.get(url).then(response =>{
         this.profil = response.data.reponse[0]
@@ -101,7 +99,7 @@ export default {
     */
     keyUnit: function(){
       if(this.keyUnit !== "") {
-        this.changeUnitProfil(this.keyUnit)
+        this.updateUnitProfil()
       }
       else {
         this.profil = null
