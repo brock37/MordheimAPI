@@ -1,7 +1,11 @@
 <template lang="html">
   <div>
     <fieldset class="profile">
-      <legend>Profile</legend>
+      <legend>Profile
+         <button type="button" name="EditMode" class="EditButton" v-if="profil !== null && editMode == false" @click.prevent="editMode = true">Edit</button>
+         <button type="button" name="AcceptEdit" v-if="editMode" @click.prevent="validEdit">V</button>
+         <button type="button" name="CancelEdit" v-if="editMode" @click.prevent="cancelEdit">X</button>
+       </legend>
       <div class="completeProfil" v-if="profil !== null">
         <table class="stats">
           <thead>
@@ -19,21 +23,21 @@
           </thead>
           <tbody>
             <tr>
-              <td>{{profil.M}}</td>
-              <td>{{profil.CC}}</td>
-              <td>{{profil.CT}}</td>
-              <td>{{profil.F}}</td>
-              <td>{{profil.E}}</td>
-              <td>{{profil.PV}}</td>
-              <td>{{profil.I}}</td>
-              <td>{{profil.A}}</td>
-              <td>{{profil.Cd}}</td>
+              <td><input type="text" name="Movement" v-model="profil.M" class="smallint" v-bind:class="classNoEdit" :readonly="!editMode"/></td>
+              <td><input type="text" name="Fight capacity" v-model="profil.CC" class="smallint" v-bind:class="classNoEdit" :readonly="!editMode"/></td>
+              <td><input type="text" name="Shooting capacity" v-model="profil.CT" class="smallint" v-bind:class="classNoEdit" :readonly="!editMode"/></td>
+              <td><input type="text" name="Force" v-model="profil.F" class="smallint" v-bind:class="classNoEdit" :readonly="!editMode"/></td>
+              <td><input type="text" name="Endurance" v-model="profil.E" class="smallint" v-bind:class="classNoEdit" :readonly="!editMode"/></td>
+              <td><input type="text" name="Life point" v-model="profil.PV" class="smallint" v-bind:class="classNoEdit" :readonly="!editMode"/></td>
+              <td><input type="text" name="Intelligence" v-model="profil.I" class="smallint" v-bind:class="classNoEdit" :readonly="!editMode"/></td>
+              <td><input type="text" name="Attack" v-model="profil.A" class="smallint" v-bind:class="classNoEdit" :readonly="!editMode"/></td>
+              <td><input type="text" name="Command" v-model="profil.Cd" class="smallint" v-bind:class="classNoEdit" :readonly="!editMode"/></td>
             </tr>
           </tbody>
         </table>
         <br>
         <div class="price">
-          Prix : <input type="text" name="price" :value="profil.Prix" class="smallint"> Courrones
+          Prix : <input type="text" name="price" :value="profil.Prix" class="smallint" v-bind:class="classNoEdit" :readonly="!editMode"> Courrones
         </div>
         <br>
         <table class="rulesTable">
@@ -51,7 +55,6 @@
           </tbody>
         </table>
       </div>
-
     </fieldset>
   </div>
 </template>
@@ -64,17 +67,16 @@ export default {
   data : function() {
     return {
       profil: null,  //Contient les infos récuperer de la BDD
-      rules : null
+      rules : null,
+      editMode: false
     }
   },
   methods : {
     /*
     Fais une requete a l'API pour avoir le profil de l'unité selectionner
     */
-    changeUnitProfil(id) {
-      this.keyUnit = id
+    updateUnitProfil() {
       var url= "http://127.0.0.1:3000/api/profile/" + this.keyUnit
-      //console.log(url);
 
       axios.get(url).then(response =>{
         this.profil = response.data.reponse[0]
@@ -86,10 +88,35 @@ export default {
 
       })
 
+    },
+    validEdit(){
+      var newProfil= {
+        id_rang: this.profil.id_rang,
+        id_race: this.profil.id_race,
+        Nom: this.profil.Nom,
+        Prix : this.profil.Prix,
+        M : this.profil.M,
+        CC : this.profil.CC,
+        CT : this.profil.CT,
+        F : this.profil.F,
+        E : this.profil.E,
+        PV : this.profil.PV,
+        I : this.profil.I,
+        A : this.profil.A,
+        Cd : this.profil.Cd,
+        Arme_Armure : this.profil.Arme_Armure,
+        Regle : this.profil.Regle
+      }
 
+      var url= "http://127.0.0.1:3000/api/profile/" + this.keyUnit
 
-
-
+      axios.put(url, newProfil).then( ()=> {
+        this.editMode= false
+      })
+    },
+    cancelEdit(){
+      this.updateUnitProfil()
+      this.editMode=false
     }
   },
   watch : {
@@ -99,13 +126,22 @@ export default {
     Sinon on remet a zero pour que la table disparaisse
     */
     keyUnit: function(){
+      this.editMode= false
       if(this.keyUnit !== "") {
-        this.changeUnitProfil(this.keyUnit)
+        this.updateUnitProfil()
       }
       else {
         this.profil = null
+
       }
 
+    }
+  },
+  computed :{
+    classNoEdit: function(){
+      return{
+        noEdit: !this.editMode
+      }
     }
   }
 }
@@ -164,5 +200,9 @@ th,td{
 .smallint{
   width: 30px;
   text-align: center;
+}
+
+.noEdit{
+    border: none;
 }
 </style>
