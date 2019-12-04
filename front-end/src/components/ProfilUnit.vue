@@ -87,6 +87,7 @@ export default {
         })
 
       })
+
     },
     validEdit(){
       var newProfil= {
@@ -125,11 +126,13 @@ export default {
     Sinon on remet a zero pour que la table disparaisse
     */
     keyUnit: function(){
+      this.editMode= false
       if(this.keyUnit !== "") {
         this.updateUnitProfil()
       }
       else {
         this.profil = null
+
       }
 
     }
