@@ -84,11 +84,35 @@ export default {
         })
 
       })
+    },
+    validEdit(){
+      var newProfil= {
+        id_rang: this.profil.id_rang,
+        id_race: this.profil.id_race,
+        Nom: this.profil.Nom,
+        Prix : this.profil.Prix,
+        M : this.profil.M,
+        CC : this.profil.CC,
+        CT : this.profil.CT,
+        F : this.profil.F,
+        E : this.profil.E,
+        PV : this.profil.PV,
+        I : this.profil.I,
+        A : this.profil.A,
+        Cd : this.profil.Cd,
+        Arme_Armure : this.profil.Arme_Armure,
+        Regle : this.profil.Regle
+      }
 
+      var url= "http://127.0.0.1:3000/api/profile/" + this.keyUnit
 
-
-
-
+      axios.put(url, newProfil).then( ()=> {
+        this.editMode= false
+      })
+    },
+    cancelEdit(){
+      this.updateUnitProfil()
+      this.editMode=false
     }
   },
   watch : {
