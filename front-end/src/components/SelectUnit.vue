@@ -47,7 +47,14 @@ export default {
       keyRang: "",
       keyUnit: "",
       units:[] ,//Contient les unites disponible
-      factions: []
+      factions: [],
+      disabledAddUnit: true,
+      showCreatePopup: false,
+      newProfil:{
+        faction: Number,
+        rang: Number
+      }
+
     }
   },
   methods :{
