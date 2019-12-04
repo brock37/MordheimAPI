@@ -38,7 +38,11 @@
 
 <script>
 import axios from 'axios'
+import NewUnit from './NewUnit.vue'
 export default {
+  components: {
+    NewUnit
+  },
   data: function() {
     return{
       keyFaction: "",
@@ -122,5 +126,9 @@ fieldset{
   width: 50%;
   min-width: 50%;
   margin-bottom: 25px;
+}
+.popup{
+  position: absolute;
+  border: 1px solid black;
 }
 </style>
