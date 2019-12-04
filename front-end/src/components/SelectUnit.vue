@@ -29,6 +29,7 @@
                 <option v-for="unit in units" :value="unit.id" v-bind:key="unit.id">{{unit.Nom}}</option>
               </select>
               <button type="button" name="AddUnit" :disabled="disabledAddUnit" @click="OpenPopUpNewProfil()">+</button>
+              <button type="button" name="RemoveUnit" @click.prevent="alertRemoveUnit" v-if="keyUnit !== ''">-</button>
               <NewUnit v-if="showCreatePopup" v-bind:profil="newProfil" @closePopUp="closePopUpNewProfil"/>
             </td>
           </tr>
@@ -57,8 +58,8 @@ export default {
       newProfil:{
         faction: Number,
         rang: Number
-      }
-
+      },
+      nameSelectUnit: ""
     }
   },
   methods :{
@@ -96,10 +97,26 @@ export default {
         this.updateUnitSelector()
         this.keyUnit= id
       }
+    },
+    alertRemoveUnit(){
+      for (var i = 0; i < this.units.length; i++) {
+        if(this.units[i].id == this.keyUnit){
+          this.nameSelectUnit = this.units[i].Nom
+        }
+      }
+      if(window.confirm("Voulez vous supprimmer l'unité '"+ this.nameSelectUnit +"' ?")){
+          var url= "http://127.0.0.1:3000/api/profile/" + this.keyUnit
+
+          axios.delete(url).then( ()=>{
+            window.alert("Unité supprimer")
+            this.updateUnitSelector()
+          })
+      }
     }
   },
   watch : {
     keyUnit: function (){
+      this.nameSelectUnit=
       //Envoie un signal ainsi que la nouvelle valeur de keyUnit au parent
       this.$emit('update:keyunit', this.keyUnit)
     },
