@@ -37,7 +37,7 @@
         </table>
         <br>
         <div class="price">
-          Prix : <input type="text" name="price" :value="profil.Prix" class="smallint" v-bind:class="classNoEdit" :readonly="!editMode"> Courrones
+          Prix : <input type="text" name="price" v-model="profil.Prix" class="smallint" v-bind:class="classNoEdit" :readonly="!editMode"> Courrones
         </div>
         <br>
         <table class="rulesTable">
