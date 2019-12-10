@@ -74,7 +74,7 @@ export default {
         this.keyUnit = ""
         this.disabledAddUnit= false
 
-        var url= "http://127.0.0.1:3000/api/profile/"
+        var url= "http://127.0.0.1:3000/profil/"
                 + this.keyFaction + "/" + this.keyRang
 
         axios.get(url).then(response =>{
@@ -105,7 +105,7 @@ export default {
         }
       }
       if(window.confirm("Voulez vous supprimmer l'unité '"+ this.nameSelectUnit +"' ?")){
-          var url= "http://127.0.0.1:3000/api/profile/" + this.keyUnit
+          var url= "http://127.0.0.1:3000/profil/" + this.keyUnit
 
           axios.delete(url).then( ()=>{
             window.alert("Unité supprimer")
@@ -129,7 +129,7 @@ export default {
   },
   created :function(){
     //A la creation du composant on vas chercher les factions disponible dans la bbd
-    let url= "http://127.0.0.1:3000/api/faction"
+    let url= "http://127.0.0.1:3000/faction"
 
     axios.get(url).then(response =>{
       this.factions = response.data.reponse

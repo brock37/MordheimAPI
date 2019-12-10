@@ -76,12 +76,12 @@ export default {
     Fais une requete a l'API pour avoir le profil de l'unité selectionner
     */
     updateUnitProfil() {
-      var url= "http://127.0.0.1:3000/api/profile/" + this.keyUnit
+      var url= "http://127.0.0.1:3000/profil/" + this.keyUnit
 
       axios.get(url).then(response =>{
         this.profil = response.data.reponse[0]
 
-        var urlRules= "http://127.0.0.1:3000/api/regles/" + this.keyUnit + "/" + this.profil.id_race
+        var urlRules= "http://127.0.0.1:3000/rules/" + this.keyUnit + "/" + this.profil.id_race
         axios.get(urlRules).then(response =>{
           this.rules = response.data.reponse
         })
@@ -108,7 +108,7 @@ export default {
         Regle : this.profil.Regle
       }
 
-      var url= "http://127.0.0.1:3000/api/profile/" + this.keyUnit
+      var url= "http://127.0.0.1:3000/profil/" + this.keyUnit
 
       axios.put(url, newProfil).then( ()=> {
         this.editMode= false

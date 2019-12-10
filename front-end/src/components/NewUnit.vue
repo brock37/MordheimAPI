@@ -27,7 +27,7 @@ export default {
     },
     validNewUnit(){
       if(this.newName !== ""){
-        var url= "http://127.0.0.1:3000/api/profile/"
+        var url= "http://127.0.0.1:3000/profil/"
         var data = {
           ID : this.lastIndex,
           id_rang: this.profil.rang,
@@ -59,7 +59,7 @@ export default {
     }
   },
   created: function(){
-    var url= "http://127.0.0.1:3000/api/profile/"
+    var url= "http://127.0.0.1:3000/profil/"
     axios.get(url).then(response =>{
       this.allUnit = response.data.reponse
     })
