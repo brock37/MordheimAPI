@@ -16,7 +16,6 @@ export default {
   data : function() {
     return {
       newName: "",
-      price: 0,
       allUnit: [],
       accepted: false
     }
@@ -33,7 +32,7 @@ export default {
           id_rang: this.profil.rang,
           id_race: this.profil.faction,
           Nom: this.newName,
-          Prix: this.price,
+          Prix: 0,
           M : 0,
           CC : 0,
           CT : 0,
