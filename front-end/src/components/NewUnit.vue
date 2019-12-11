@@ -26,7 +26,7 @@ export default {
       this.$emit('closePopUp', this.lastIndex, this.accepted)
     },
     validNewUnit(){
-      if(this.newName !== ""){
+      if(this.newName !== "" && !this.nameUsed(this.newName)){
         var url= "http://127.0.0.1:3000/profil/"
         var data = {
           ID : this.lastIndex,
@@ -51,6 +51,15 @@ export default {
           this.closePopUp()
         })
       }
+    },
+    nameUsed(newName){
+      for(const unit of this.allUnit){
+        if(newName == unit.Nom){
+          window.alert("Name already use" + unit.Nom)
+          return true;
+        }
+      }
+      return false;
     }
   },
   computed : {
