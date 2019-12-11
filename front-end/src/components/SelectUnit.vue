@@ -8,7 +8,7 @@
             <th>Faction </th>
             <td>
               <select v-model="keyFaction" class="" name="id_faction" title="Sélectionnez une faction">
-                <option v-for="faction in factions" :value="faction.id"
+                <option v-for="faction in factions" v-bind:value="faction.id"
                 v-bind:key="faction.id">{{faction.nom_race}}</option>
                 </select>
             </td>
@@ -26,7 +26,7 @@
             <th>Unité </th>
             <td>
               <select v-model="keyUnit" name="id_unite" title="Sélectionnez un rang pour l\'unité">
-                <option v-for="unit in units" :value="unit.id" v-bind:key="unit.id">{{unit.Nom}}</option>
+                <option v-for="unit in units" v-bind:value="unit.id" v-bind:key="unit.id">{{unit.Nom}}</option>
               </select>
               <button type="button" name="AddUnit" :disabled="disabledAddUnit" @click="OpenPopUpNewProfil()">+</button>
               <button type="button" name="RemoveUnit" @click.prevent="alertRemoveUnit" v-if="keyUnit !== ''">-</button>
