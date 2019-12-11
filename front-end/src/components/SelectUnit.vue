@@ -58,8 +58,7 @@ export default {
       newProfil:{
         faction: Number,
         rang: Number
-      },
-      nameSelectUnit: ""
+      }
     }
   },
   methods :{
@@ -99,12 +98,8 @@ export default {
       }
     },
     alertRemoveUnit(){
-      for (var i = 0; i < this.units.length; i++) {
-        if(this.units[i].id == this.keyUnit){
-          this.nameSelectUnit = this.units[i].Nom
-        }
-      }
-      if(window.confirm("Voulez vous supprimmer l'unité '"+ this.nameSelectUnit +"' ?")){
+
+      if(window.confirm("Voulez vous supprimmer l'unité '"+ this.nameSelectedUnit +"' ?")){
           var url= "http://127.0.0.1:3000/profil/" + this.keyUnit
 
           axios.delete(url).then( ()=>{
@@ -114,9 +109,19 @@ export default {
       }
     }
   },
+  computed : {
+    nameSelectedUnit(){
+      var name= ""
+      for (var i = 0; i < this.units.length; i++) {
+        if(this.units[i].id == this.keyUnit){
+          name = this.units[i].Nom
+        }
+      }
+      return name
+    }
+  },
   watch : {
     keyUnit: function (){
-      this.nameSelectUnit=
       //Envoie un signal ainsi que la nouvelle valeur de keyUnit au parent
       this.$emit('update:keyunit', this.keyUnit)
     },
