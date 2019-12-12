@@ -17,7 +17,8 @@ export default {
     return {
       newName: "",
       allUnit: [],
-      accepted: false
+      accepted: false,
+      lastIndex: null
     }
   },
   methods :{
@@ -28,7 +29,6 @@ export default {
       if(this.newName !== "" && !this.nameUsed(this.newName)){
         var url= "http://127.0.0.1:3000/profil/"
         var data = {
-          ID : this.lastIndex,
           id_rang: this.profil.rang,
           id_race: this.profil.faction,
           Nom: this.newName,
@@ -45,7 +45,8 @@ export default {
           Arme_Armure: "",
           Regle: null
         }
-        axios.post(url,data).then(()=> {
+        axios.post(url,data).then(res=> {
+          this.lastIndex =res.data.reponse.insertId
           this.accepted= true
           this.closePopUp()
         })
@@ -54,16 +55,11 @@ export default {
     nameUsed(newName){
       for(const unit of this.allUnit){
         if(newName == unit.Nom){
-          window.alert("Name already use" + unit.Nom)
+          window.alert("Name already use " + unit.Nom)
           return true;
         }
       }
       return false;
-    }
-  },
-  computed : {
-    lastIndex(){
-      return this.allUnit[this.allUnit.length - 1 ].ID + 1
     }
   },
   created: function(){
