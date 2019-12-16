@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Welcome/>
+    <Welcome v-bind:username.sync="logName"/>
   </div>
 </template>
 
@@ -10,8 +10,14 @@ import Welcome from '@/components/Welcome.vue'
 
 export default {
   name: 'home',
+  props:['username'],
   components: {
     Welcome
-  }
+  },
+  computed:{
+    logName(){
+      return this.username
+    }
+  },
 }
 </script>

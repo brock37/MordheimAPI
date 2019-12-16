@@ -1,6 +1,7 @@
 <template lang="html">
   <div class="welcome">
     <h2>Bienvenue sur Mordheim Warbands</h2>
+    <h3>{{username}}</h3>
     <hr>
     <p>Mordheim Warbands Vous permet de creer differentes bandes pour votre jeux favoris
     et de faire suivre l'XP gagné lors d'un campagne.</p>
@@ -15,6 +16,7 @@
 
 <script>
 export default {
+  props:['username']
 }
 </script>
 

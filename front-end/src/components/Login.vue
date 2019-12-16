@@ -14,9 +14,10 @@
     import axios from "axios"
     export default {
         name: "Login",
+        props:['username'],
         data (){
           return{
-            email:"",
+            email: "",
             password:""
           }
         },
@@ -33,7 +34,9 @@
                     axios.post("http://127.0.0.1:3000/login", data)
                         .then((response) => {
                             console.log("Logged in")
-                            router.push("/dashboard")
+                            console.log(response.data[0]);
+                            this.$emit('update:username', response.data[0])
+                            router.push("/")
                         })
                         .catch((errors) => {
                             console.log(["Cannot log in", errors])
@@ -41,6 +44,6 @@
                 }
                 login()
             }
-        }
+        },
     }
 </script>

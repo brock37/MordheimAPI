@@ -101,7 +101,6 @@ let users = [
 
 
 app.post('/login', (req, res, next) => {
-  console.log(req.body);
   passport.authenticate("local", (err, user, info) => {
     if(err) {
       return next(err)
@@ -110,7 +109,7 @@ app.post('/login', (req, res, next) => {
       return res.status(400).send([user, "Cannot log in :()", info])
     }
     req.login(user, err => {
-      res.send("Logged in")
+      res.send([user.name,"Logged in"])
     })
   })(req,res, next)
 })
