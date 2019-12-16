@@ -20,14 +20,14 @@
         methods: {
             getUserData: function() {
                 let self = this
-                axios.get("/user")
+                axios.get("http://127.0.0.1:3000/user")
                     .then((response) => {
                         console.log(response)
                         self.$set(this, "user", response.data.user)
                     })
                     .catch((errors) => {
                         console.log(errors)
-                        router.push("/")
+                        //router.push("/")
                     })
             }
         },

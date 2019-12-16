@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import EditProfil from '../views/EditProfil.vue'
 import Login from '@/components/Login'
 import Dashboard from "@/components/Dashboard"
+import Logout from "@/components/Logout"
 
 Vue.use(VueRouter)
 
@@ -35,7 +36,13 @@ const routes = [
     path: '/dashboard',
     name: 'dashboard',
     component: Dashboard
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    component: Logout
   }
+
 ]
 
 const router = new VueRouter({
