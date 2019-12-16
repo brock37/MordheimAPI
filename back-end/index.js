@@ -1,6 +1,10 @@
 const http = require('http');
 const express = require('express');
 const bodyParser= require('body-parser');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy
+
 const app = express();
 const db= require('./db');
 
@@ -21,6 +25,14 @@ app.use(function (req, res, next){
 
 //Middlewares
 app.use(bodyParser.json());
+app.use(cookieSession({
+  name:'mysession',
+  keys: ['vueauthrandomkey'],
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 
