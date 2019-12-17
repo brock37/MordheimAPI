@@ -1,21 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy
-const db = require('../db')
-
-let users = []
-
-function loadUser(){
-  let sql = "SELECT * from users";
-  let query = db.query(sql, function (err, results) {
-    if(err) throw err;
-    console.log("Loading user");
-
-    users= results
-    console.log(users);
-  });
-}
-
-loadUser()
+const user = require('../user')
 
 passport.use(
   new LocalStrategy(
@@ -24,30 +9,26 @@ passport.use(
       passwordField: "password"
     },
 
-    (username, password, done) => {
-      let user = users.find((user) => {
-        return user.username === username && user.password === password
-      })
-
-      if (user) {
-        done(null, user)
-      } else {
-        done(null, false, { message: 'Incorrect username or password'})
-      }
+    (username, password, cb) => {
+      user.users.findByUsername(username, function(err, user) {
+        if (err) { return cb(err); }
+        if (!user) { return cb(null, false); }
+        if (user.password != password) { return cb(null, false); }
+        return cb(null, user);
+      });
     }
   )
 )
 
-passport.serializeUser((user, done) => {
-  done(null, user.id)
+passport.serializeUser((user, cb) => {
+  cb(null, user.id)
 })
 
-passport.deserializeUser((id, done) => {
-  let user = users.find((user) => {
-    return user.id === id
-  })
-
-  done(null, user)
+passport.deserializeUser((id, cb) => {
+  user.users.findById(id, function (err, user) {
+    if (err) { return cb(err); }
+    cb(null, user);
+  });
 })
 
 module.exports = passport;

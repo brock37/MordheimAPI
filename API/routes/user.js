@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const passport = require('../passport');
+const user = require('../user')
 
 const authMiddleware = (req, res, next) => {
   if (!req.isAuthenticated()) {
@@ -31,13 +32,11 @@ router.get('/logout', (req, res)=>{
 })
 
 router.get('/data', authMiddleware, (req,res)=>{
-  let user= users.find(user =>{
-    return user.id === req.session.passport.user
+    user.users.findById(req.session.passport.user, (err,user) =>{
+      console.log([user, req.session])
+
+      res.send({user:user})
   })
-
-  console.log([user, req.session])
-
-  res.send({user:user})
 })
 
 
