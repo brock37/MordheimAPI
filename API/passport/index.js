@@ -1,20 +1,21 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy
+const db = require('../db')
 
-let users = [
-  {
-    id: 1,
-    username: "Jude",
-    email: "user@email.com",
-    password: "password"
-  },
-  {
-    id: 2,
-    username: "Emma",
-    email: "emma@email.com",
-    password: "password2"
-  }
-]
+let users = []
+
+function loadUser(){
+  let sql = "SELECT * from users";
+  let query = db.query(sql, function (err, results) {
+    if(err) throw err;
+    console.log("Loading user");
+
+    users= results
+    console.log(users);
+  });
+}
+
+loadUser()
 
 passport.use(
   new LocalStrategy(
