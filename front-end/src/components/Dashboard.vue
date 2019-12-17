@@ -20,7 +20,7 @@
         methods: {
             getUserData: function() {
                 let self = this
-                axios.get("http://127.0.0.1:3000/user")
+                axios.get("http://127.0.0.1:3000/user/data")
                     .then((response) => {
                         console.log(response)
                         self.$set(this, "user", response.data.user)

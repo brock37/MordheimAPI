@@ -31,7 +31,7 @@
                         email: email,
                         password: password
                     }
-                    axios.post("http://127.0.0.1:3000/login", data)
+                    axios.post("http://127.0.0.1:3000/user/login", data)
                         .then((response) => {
                             console.log("Logged in")
                             console.log(response.data[0]);
