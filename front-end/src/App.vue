@@ -8,10 +8,9 @@
       <router-link to="/about">About</router-link> |
       <router-link to="/editprofil">Edit Profil</router-link> |
       <router-link to="/login">Login</router-link>
-      <a href="/" v-if="username" @click.prevent="logout"> | Logout</a>
-      <a href="#"></a>
+      <span v-if="username" > | <a href="/" @click.prevent="logout">Logout</a></span>
     </div>
-    <router-view v-bind:username.sync="username"/>
+    <router-view v-bind:usernameLog.sync="username"/>
   </div>
 </template>
 
