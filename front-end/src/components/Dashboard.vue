@@ -2,7 +2,8 @@
 <template>
     <div>
         <h2>Dashboard</h2>
-        <p>Name: {{ user.name }}</p>
+        <p>Name: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
     </div>
 </template>
 <script>
@@ -13,18 +14,18 @@
         props:['usernameLog'],
         data() {
             return {
-                user: {
-                    name: this.usernameLog
-                }
+                user: {}
             }
         },
         methods: {
             getUserData: function() {
-                let self = this
+                
                 axios.get("http://127.0.0.1:3000/user/data")
                     .then((response) => {
+                      console.log("GetDataUser VUEJS");
                         console.log(response)
-                        self.$set(this, "user", response.data.user)
+                        //self.$set(this, "user", response.data.user.username)
+                        this.user= response.data.user
                     })
                     .catch((errors) => {
                         console.log(errors)
