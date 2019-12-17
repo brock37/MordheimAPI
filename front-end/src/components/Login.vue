@@ -34,7 +34,7 @@
                     axios.post("http://127.0.0.1:3000/user/login", data)
                         .then((response) => {
                             console.log("Logged in")
-                            console.log(response.data[0]);
+                            console.log(response.data);
                             this.$emit('update:usernameLog', response.data[0])
                             router.push("/")
                         })

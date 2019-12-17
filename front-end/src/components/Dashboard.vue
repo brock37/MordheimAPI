@@ -9,11 +9,12 @@
     import axios from "axios"
     import router from "../router"
     export default {
-        name: "Login",
+        name: "Dashboard",
+        props:['usernameLog'],
         data() {
             return {
                 user: {
-                    name: "Jesse"
+                    name: this.usernameLog
                 }
             }
         },
