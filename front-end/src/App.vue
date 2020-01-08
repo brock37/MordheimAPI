@@ -6,11 +6,39 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
-      <router-link to="/editprofil">Edit Profil</router-link>
+      <router-link to="/editprofil">Edit Profil</router-link> |
+      <span v-if="username" >
+        <router-link to="/dashboard">Dashboard</router-link>
+        |
+        <a href="/" @click.prevent="logout">Logout</a>
+      </span>
+      <router-link to="/login" v-else>Login</router-link>
     </div>
-    <router-view/>
+    <router-view v-bind:usernameLog.sync="username"/>
   </div>
 </template>
+
+<script>
+import axios from "axios"
+import router from "./router"
+  export default{
+    data(){
+      return{
+        username: undefined
+      }
+    },
+    methods:{
+      logout(){
+        axios.get("http://127.0.0.1:3000/user/logout")
+            .then((response) => {
+                console.log("Log out")
+                this.username= undefined
+                router.push("/login")
+            })
+      }
+    }
+  }
+</script>
 
 <style>
 #nav a{
