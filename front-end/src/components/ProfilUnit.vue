@@ -54,6 +54,21 @@
             </tr>
           </tbody>
         </table>
+        <br>
+        <table class="weaponsTable">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Portée</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Dague</td>
+              <td>CAC</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </fieldset>
   </div>
