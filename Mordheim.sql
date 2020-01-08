@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1deb2
+-- version 4.9.2deb1
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le :  mar. 12 nov. 2019 à 16:17
--- Version du serveur :  5.7.26-1
--- Version de PHP :  7.3.10-1+b1
+-- Généré le :  mer. 08 jan. 2020 à 15:38
+-- Version du serveur :  5.7.26-1+b1
+-- Version de PHP :  7.3.12-1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -55,7 +55,7 @@ INSERT INTO `equipement` (`ID`, `nom`, `Type`, `prix`, `description`, `regles`, 
 --
 
 CREATE TABLE `race` (
-  `ID` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `nom_race` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -63,7 +63,7 @@ CREATE TABLE `race` (
 -- Déchargement des données de la table `race`
 --
 
-INSERT INTO `race` (`ID`, `nom_race`) VALUES
+INSERT INTO `race` (`id`, `nom_race`) VALUES
 (1, 'Nains'),
 (2, 'Orques'),
 (3, 'Hommes-bêtes'),
@@ -134,7 +134,14 @@ INSERT INTO `ref_profil` (`ID`, `id_rang`, `id_race`, `Nom`, `Prix`, `M`, `CC`, 
 (14, 1, 3, 'Gor', 35, 5, 4, 3, 3, 3, 1, 3, 1, 6, '', NULL),
 (15, 1, 3, 'Chien du chaos', 15, 7, 4, 0, 4, 3, 1, 3, 1, 5, '', NULL),
 (16, 1, 3, 'Minotaure', 200, 6, 4, 3, 4, 4, 3, 4, 3, 8, '', NULL),
-(17, 0, 4, 'Chef Skaven', 145, 6, 4, 2, 3, 3, 2, 8, 2, 9, '', NULL);
+(17, 0, 4, 'Chef Skaven', 145, 6, 4, 2, 3, 3, 2, 8, 2, 9, '', NULL),
+(18, 0, 8, 'chef', 90, 1, 1, 1, 1, 1, 1, 1, 1, 1, '', NULL),
+(19, 1, 2, 'Gobelins', 40, 4, 5, 3, 2, 1, 2, 3, 4, 5, '', NULL),
+(20, 1, 2, 'Orques', 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', NULL),
+(22, 1, 2, 'Orcs', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', NULL),
+(25, 1, 2, 'Squigg', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', NULL),
+(27, 1, 2, 'Orc', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', NULL),
+(28, 1, 4, 'Rat', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', NULL);
 
 -- --------------------------------------------------------
 
@@ -170,6 +177,28 @@ INSERT INTO `regles_speciales` (`ID`, `nom`, `description`, `resume`, `id_person
 (12, 'Sorcier', 'Un Chaman homme-bête est un sorcier, il peut utiliser les rituels du chaos décrits dans la section magie du livre de règles de Mordheim (p.59).', '', 9, NULL),
 (13, 'Ivre', 'Avant un combat, le Centigor a pour habitude d\'ingurgiter de grandes quantités de bière et de vin, fruits de ses précédentes rapines. Cette pratique les plonge dans une ivresse frénétique aux effets variables.\r\n\r\nAu début de chaque tour, jetez 1D6. Sur un résultat de 1, effectuez un test de stupidité (en cas d’échec, l\'effet dure jusqu\'à la fin du tour).\r\nSi vous obtenez un résultat compris entre 2 et 5, rien de particulier. Un résultat de 6 indique qu\'il devient frénétique pour la durée du tour.\r\n\r\nLorsqu\'il est stupide ou frénétique, le Centigor est immunisé à la psychologie.', '1D6 1->stupidité/2-5->R.A.S/6->frénétique', 12, NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(16) NOT NULL,
+  `password` varchar(60) NOT NULL,
+  `email` varchar(120) DEFAULT NULL,
+  `privileges` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `privileges`) VALUES
+(1, 'brock', 'azerty', 'brock@exemple.com', 'user'),
+(2, 'flow', 'brock', NULL, 'user');
+
 --
 -- Index pour les tables déchargées
 --
@@ -184,7 +213,7 @@ ALTER TABLE `equipement`
 -- Index pour la table `race`
 --
 ALTER TABLE `race`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `rang`
@@ -205,6 +234,12 @@ ALTER TABLE `regles_speciales`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Index pour la table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
@@ -218,7 +253,7 @@ ALTER TABLE `equipement`
 -- AUTO_INCREMENT pour la table `race`
 --
 ALTER TABLE `race`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `rang`
@@ -230,13 +265,19 @@ ALTER TABLE `rang`
 -- AUTO_INCREMENT pour la table `ref_profil`
 --
 ALTER TABLE `ref_profil`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT pour la table `regles_speciales`
 --
 ALTER TABLE `regles_speciales`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT pour la table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
