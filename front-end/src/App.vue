@@ -30,8 +30,7 @@ import router from "./router"
     methods:{
       logout(){
         axios.get("http://127.0.0.1:3000/user/logout")
-            .then((response) => {
-                console.log("Log out")
+            .then(() => {
                 this.username= undefined
                 router.push("/login")
             })
