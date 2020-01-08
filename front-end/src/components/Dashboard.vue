@@ -1,10 +1,17 @@
 
 <template>
     <div>
-        <h2>Dashboard</h2>
+        <h2>Dashboard :</h2>
         <p>Name: {{ user.username }}</p>
         <p>Email: {{ user.email }}</p>
+        <br>
+        <h2>Listes : <button type="button" name="AddNewBand">+</button> </h2> 
+        <ul>
+          <li>1</li>
+          <li>2</li>
+        </ul>
     </div>
+
 </template>
 <script>
     import axios from "axios"
@@ -19,7 +26,7 @@
         },
         methods: {
             getUserData: function() {
-                
+
                 axios.get("http://127.0.0.1:3000/user/data")
                     .then((response) => {
                       console.log("GetDataUser VUEJS");
