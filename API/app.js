@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(cors({
   origin:['http://localhost:8080'],
-  methods:['GET','POST'],
+  methods:['GET','POST','PUT'],
   credentials: true
 }))
 
